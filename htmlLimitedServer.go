@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
-	"time"
 )
 
 func maxClients(h http.Handler, n int) http.Handler{
@@ -19,7 +17,7 @@ func maxClients(h http.Handler, n int) http.Handler{
 }
 
 func main() {
-	handler := http.HandleFunc(func(w http.ResponseWriter, r *http.Request) {
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, r.URL.Path[1:])
 	})
 
